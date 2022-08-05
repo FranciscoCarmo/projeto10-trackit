@@ -1,25 +1,47 @@
 import styled from "styled-components";
+import { useState } from "react";
 
-import WeekDayButton from "./WeekDayButton";
+import WeekButtonsAdd from "./WeekButtonsAdd";
 
-export default function AddHabbitSection() {
+export default function AddHabbitSection({
+  isCreatingHabbit,
+  setIsCreatingHabbit,
+}) {
   const weekDays = [0, 1, 2, 3, 4, 5, 6];
 
-  return (
-    <AddHabbitWrapper>
-      <input placeholder="nome do hábito"></input>
-      <SelectDays>
-        {weekDays.map((index) => {
-          return <WeekDayButton index={index} key={index} />;
-        })}
-      </SelectDays>
+  const [selectedDaysArray, setSelectedDaysArray] = useState([]);
+  console.log(selectedDaysArray);
 
-      <BottomButtons>
-        <Cancel>Cancelar</Cancel>
-        <Save>Salvar</Save>
-      </BottomButtons>
-    </AddHabbitWrapper>
-  );
+  if (isCreatingHabbit) {
+    return (
+      <AddHabbitWrapper>
+        <input placeholder="nome do hábito"></input>
+        <SelectDays>
+          {weekDays.map((index) => {
+            return (
+              <WeekButtonsAdd
+                index={index}
+                key={index}
+                selectedDaysArray={selectedDaysArray}
+                setSelectedDaysArray={setSelectedDaysArray}
+              />
+            );
+          })}
+        </SelectDays>
+
+        <BottomButtons>
+          <Cancel
+            onClick={() => {
+              setIsCreatingHabbit(false);
+            }}
+          >
+            Cancelar
+          </Cancel>
+          <Save>Salvar</Save>
+        </BottomButtons>
+      </AddHabbitWrapper>
+    );
+  } else return <></>;
 }
 
 const AddHabbitWrapper = styled.div`

@@ -1,16 +1,28 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 import HabbitList from "./HabbitList";
 import AddHabbitSection from "./AddHabbitSection";
 
 export default function TodayContent() {
+  const [isCreatingHabbit, setIsCreatingHabbit] = useState(false);
+
   return (
     <HabbitsWrapper>
       <MyHabbitsContainer>
         <h2>Meus hábitos</h2>
-        <AddHabbit>+</AddHabbit>
+        <AddHabbit
+          onClick={() => {
+            setIsCreatingHabbit(!isCreatingHabbit);
+          }}
+        >
+          +
+        </AddHabbit>
       </MyHabbitsContainer>
-      <AddHabbitSection />
+      <AddHabbitSection
+        isCreatingHabbit={isCreatingHabbit}
+        setIsCreatingHabbit={setIsCreatingHabbit}
+      />
 
       <HabbitList />
     </HabbitsWrapper>

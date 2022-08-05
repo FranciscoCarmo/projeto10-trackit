@@ -1,9 +1,19 @@
 import styled from "styled-components";
 
-export default function WeekDayButton({ index }) {
+export default function WeekDayButton({
+  index,
+  selectedDaysArray,
+  setSelectedDaysArray,
+}) {
   const letterArray = ["D", "S", "T", "Q", "Q", "S", "S"];
 
-  return <DayButton>{letterArray[index]}</DayButton>;
+  console.log(selectedDaysArray);
+
+  if (selectedDaysArray && selectedDaysArray.includes(index)) {
+    return <DayButton selected>{letterArray[index]}</DayButton>;
+  } else {
+    return <DayButton>{letterArray[index]}</DayButton>;
+  }
 }
 
 const DayButton = styled.div`
@@ -17,6 +27,7 @@ const DayButton = styled.div`
   align-items: center;
 
   font-size: 20px;
-  color: #dbdbdb;
+  background-color: ${(props) => (props.selected ? "#CFCFCF" : "white")};
+  color: ${(props) => (props.selected ? "white" : "#dbdbdb")};
   margin-right: 3px;
 `;
