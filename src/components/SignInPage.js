@@ -4,9 +4,9 @@ import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import FormsSection from "./FormsSection";
+import FormsSigninSection from "./FormsSigninSection";
 
-export default function LoginPage() {
+export default function SigninPage() {
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -15,9 +15,9 @@ export default function LoginPage() {
   return (
     <LoginContent>
       <img src={logo}></img>
-      <FormsSection />
-      <Link to="/cadastro" style={{ textDecoration: "none" }}>
-        <p>Não tem uma conta? Cadastre-se!</p>
+      <FormsSigninSection />
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <p>Já tem uma conta? Faça login!</p>
       </Link>
     </LoginContent>
   );
