@@ -34,6 +34,8 @@ const Content = styled.div`
   max-width: 375px;
   width: 100vw;
 
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
 
