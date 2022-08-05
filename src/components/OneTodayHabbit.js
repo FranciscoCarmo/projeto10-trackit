@@ -5,7 +5,7 @@ export default function OneTodayHabbit() {
   return (
     <OneHabbitWrapper>
       <OneHabbitText>
-        <HabbitTitle>Ler um capítulo de livro</HabbitTitle>
+        <HabbitTitle>Ler 1 um capítulo de livro</HabbitTitle>
         <Sequence>Sequência atual: 5 dias</Sequence>
         <Record>Recorder atual: 6 dias</Record>
       </OneHabbitText>
@@ -26,7 +26,8 @@ const OneHabbitWrapper = styled.div`
 
   background-color: white;
 
-  padding: 10px 15px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
 `;
 
 const OneHabbitText = styled.div`
@@ -37,7 +38,7 @@ const OneHabbitText = styled.div`
 `;
 
 const HabbitTitle = styled.h3`
-  font-size: 20px;
+  font-size: 19px;
   margin-bottom: 6px;
 `;
 
@@ -54,7 +55,7 @@ const CheckHabbitButton = styled.div`
   height: 69px;
   border-radius: 5px;
 
-  margin-left: 10px;
+  margin-left: 6px;
 
   display: flex;
   justify-content: center;

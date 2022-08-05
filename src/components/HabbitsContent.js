@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import HabbitList from "./HabbitList";
+import AddHabbitSection from "./AddHabbitSection";
+
 export default function TodayContent() {
   return (
     <HabbitsWrapper>
@@ -7,6 +10,8 @@ export default function TodayContent() {
         <h2>Meus hábitos</h2>
         <AddHabbit>+</AddHabbit>
       </MyHabbitsContainer>
+      <AddHabbitSection />
+
       <HabbitList />
     </HabbitsWrapper>
   );
@@ -37,6 +42,7 @@ const MyHabbitsContainer = styled.div`
   font-size: 23px;
 
   margin-top: 20px;
+  margin-bottom: 16px;
 `;
 
 const AddHabbit = styled.div`

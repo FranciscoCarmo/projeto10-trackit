@@ -3,7 +3,7 @@ import Menu from "./Menu";
 import HabbitsContent from "./HabbitsContent";
 import styled from "styled-components";
 
-export default function TodayPage() {
+export default function HabbitsPage() {
   return (
     <HabbitsPageWrapper>
       <Header />

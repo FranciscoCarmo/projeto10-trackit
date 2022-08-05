@@ -8,6 +8,11 @@ export default function TodayContent() {
       <TodayHeader />
       <AllTodayHabbits>
         <OneTodayHabbit />
+        <OneTodayHabbit />
+        <OneTodayHabbit />
+        <OneTodayHabbit />
+        <OneTodayHabbit />
+        <OneTodayHabbit />
       </AllTodayHabbits>
     </TodayWrapper>
   );
@@ -20,12 +25,10 @@ const TodayWrapper = styled.div`
   background-color: #f2f2f2;
 
   padding-top: 70px;
-  padding-bottom: 70px;
+  padding-bottom: 80px;
   padding-left: 15px;
   padding-right: 15px;
-
-  position: fixed;
-  top: 0;
+  position: absolute;
   left: 0;
 
   display: flex;
