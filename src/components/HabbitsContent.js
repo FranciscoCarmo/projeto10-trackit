@@ -1,19 +1,18 @@
 import styled from "styled-components";
-import OneTodayHabbit from "./OneTodayHabbit";
-import TodayHeader from "./TodayHeader";
 
 export default function TodayContent() {
   return (
-    <TodayWrapper>
-      <TodayHeader />
-      <AllTodayHabbits>
-        <OneTodayHabbit />
-      </AllTodayHabbits>
-    </TodayWrapper>
+    <HabbitsWrapper>
+      <MyHabbitsContainer>
+        <h2>Meus hábitos</h2>
+        <AddHabbit>+</AddHabbit>
+      </MyHabbitsContainer>
+      <HabbitList />
+    </HabbitsWrapper>
   );
 }
 
-const TodayWrapper = styled.div`
+const HabbitsWrapper = styled.div`
   min-width: 100vw;
   min-height: 100vh;
 
@@ -27,16 +26,6 @@ const TodayWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-
-  display: flex;
-  flex-direction: column;
-`;
-
-const AllTodayHabbits = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const MyHabbitsContainer = styled.div`
