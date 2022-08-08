@@ -7,6 +7,7 @@ import LoginPage from "./components/LoginPage";
 import SigninPage from "./components/SignInPage";
 import TodayPage from "./components/TodayPage";
 import HabbitsPage from "./components/HabbitsPage";
+import HistoryPage from "./components/HistoryPage";
 
 import UserContext from "./contexts/UserContext";
 
@@ -27,6 +28,7 @@ export default function App() {
               <Route path="/cadastro" element={<SigninPage />}></Route>
               <Route path="/hoje" element={<TodayPage />}></Route>
               <Route path="/habitos" element={<HabbitsPage />}></Route>
+              <Route path="/historico" element={<HistoryPage />}></Route>
             </Routes>
           </BrowserRouter>
         </Content>

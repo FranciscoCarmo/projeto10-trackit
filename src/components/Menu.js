@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import UserContext from "../contexts/UserContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   CircularProgressbar,
@@ -12,10 +13,23 @@ import "react-circular-progressbar/dist/styles.css";
 export default function Menu() {
   const { percentage, setPercentage } = useContext(UserContext);
 
+  let navigate = useNavigate();
+
   return (
     <MenuWrapper>
-      <div>Hábitos</div>
-      <Circle style={{ width: 91, height: 91 }}>
+      <div
+        onClick={() => {
+          navigate("../habitos", { replace: true });
+        }}
+      >
+        Hábitos
+      </div>
+      <Circle
+        onClick={() => {
+          navigate("../hoje", { replace: true });
+        }}
+        style={{ width: 91, height: 91 }}
+      >
         <CircularProgressbar
           value={percentage}
           text={`Hoje`}
@@ -29,7 +43,13 @@ export default function Menu() {
           })}
         />
       </Circle>
-      <div>Histórico</div>
+      <div
+        onClick={() => {
+          navigate("../historico", { replace: true });
+        }}
+      >
+        Histórico
+      </div>
     </MenuWrapper>
   );
 }
