@@ -1,21 +1,73 @@
 import styled from "styled-components";
 import OneTodayHabbit from "./OneTodayHabbit";
 import TodayHeader from "./TodayHeader";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export default function TodayContent() {
-  return (
-    <TodayWrapper>
-      <TodayHeader />
-      <AllTodayHabbits>
-        <OneTodayHabbit />
-        <OneTodayHabbit />
-        <OneTodayHabbit />
-        <OneTodayHabbit />
-        <OneTodayHabbit />
-        <OneTodayHabbit />
-      </AllTodayHabbits>
-    </TodayWrapper>
-  );
+  const [todayHabbit, setTodayHabbit] = useState();
+  const [reloadToday, setReloadToday] = useState([]);
+
+  let doneArray = [];
+
+  if (todayHabbit && todayHabbit.length > 0) {
+    doneArray = todayHabbit.filter((x) => x.done);
+    console.log(doneArray.length == todayHabbit.length);
+  }
+
+  function getTodayHabbit() {
+    const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDg3OSwiaWF0IjoxNjU5OTY0Njg4fQ.iVr8POqd35B2p21FIl2-Ezg3xfsnP_mMU8eKufnIbic";
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const promisse = axios.get(
+      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
+      config
+    );
+
+    promisse
+      .then((resposta) => {
+        setTodayHabbit(resposta.data);
+        // setReloadToday([...reloadToday]);
+      })
+      .catch(console.log(promisse));
+
+    console.log(todayHabbit);
+  }
+
+  useEffect(getTodayHabbit, [reloadToday]);
+
+  if (todayHabbit && todayHabbit.length > 0) {
+    return (
+      <TodayWrapper>
+        <TodayHeader todayHabbit={todayHabbit} />
+
+        <AllTodayHabbits>
+          {todayHabbit.map((habito) => {
+            return (
+              <OneTodayHabbit
+                habito={habito}
+                key={habito.id}
+                reloadToday={reloadToday}
+                setReloadToday={setReloadToday}
+              />
+            );
+          })}
+        </AllTodayHabbits>
+      </TodayWrapper>
+    );
+  } else {
+    return (
+      <TodayWrapper>
+        <TodayHeader />
+
+        <AllTodayHabbits></AllTodayHabbits>
+      </TodayWrapper>
+    );
+  }
 }
 
 const TodayWrapper = styled.div`

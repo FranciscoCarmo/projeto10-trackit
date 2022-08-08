@@ -12,11 +12,14 @@ import UserContext from "./contexts/UserContext";
 
 export default function App() {
   const [user, setUser] = useState({});
+  const [percentage, setPercentage] = useState(0);
 
   return (
     <>
       <GlobalStyles />
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserContext.Provider
+        value={{ user, setUser, percentage, setPercentage }}
+      >
         <Content>
           <BrowserRouter>
             <Routes>

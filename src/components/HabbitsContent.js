@@ -6,6 +6,7 @@ import AddHabbitSection from "./AddHabbitSection";
 
 export default function TodayContent() {
   const [isCreatingHabbit, setIsCreatingHabbit] = useState(false);
+  const [reload, setReload] = useState([]);
 
   return (
     <HabbitsWrapper>
@@ -22,9 +23,11 @@ export default function TodayContent() {
       <AddHabbitSection
         isCreatingHabbit={isCreatingHabbit}
         setIsCreatingHabbit={setIsCreatingHabbit}
+        reload={reload}
+        setReload={setReload}
       />
 
-      <HabbitList />
+      <HabbitList reload={reload} setReload={setReload} />
     </HabbitsWrapper>
   );
 }
@@ -36,11 +39,11 @@ const HabbitsWrapper = styled.div`
   background-color: #f2f2f2;
 
   padding-top: 70px;
-  padding-bottom: 70px;
+  padding-bottom: 80px;
   padding-left: 15px;
   padding-right: 15px;
 
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 `;

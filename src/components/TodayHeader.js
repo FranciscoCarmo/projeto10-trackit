@@ -1,13 +1,27 @@
 import styled from "styled-components";
 import dayjs from "dayjs";
+import UserContext from "../contexts/UserContext";
+import { useContext } from "react";
 
-export default function TodayHeader() {
+export default function TodayHeader({ todayHabbit }) {
   const now = dayjs();
   const diaDoMes = now.date();
   const mes = now.month();
 
+  const { percentage, setPercentage } = useContext(UserContext);
+
   console.log(now);
   console.log(diaDaSemana(now));
+
+  let doneArray = [];
+  let aux = 0;
+
+  if (todayHabbit && todayHabbit.length > 0) {
+    doneArray = todayHabbit.filter((x) => x.done);
+    aux = doneArray.length / todayHabbit.length;
+    setPercentage(aux * 100);
+    console.log(percentage);
+  }
 
   function diaDaSemana(now) {
     const dia = now.day();
@@ -43,15 +57,27 @@ export default function TodayHeader() {
     }
   }
 
-  return (
-    <TodayHeaderWrapper>
-      <h2>
-        {diaDaSemana(now)}, {diaDoMes.toString().padStart(2, "0")}/
-        {mes.toString().padStart(2, "0")}
-      </h2>
-      <p>Nenhum hábito concluído ainda</p>
-    </TodayHeaderWrapper>
-  );
+  if (percentage > 0) {
+    return (
+      <TodayHeaderWrapper>
+        <h2>
+          {diaDaSemana(now)}, {diaDoMes.toString().padStart(2, "0")}/
+          {mes.toString().padStart(2, "0")}
+        </h2>
+        <GreenText>{percentage}% dos hábitos concluídos</GreenText>
+      </TodayHeaderWrapper>
+    );
+  } else {
+    return (
+      <TodayHeaderWrapper>
+        <h2>
+          {diaDaSemana(now)}, {diaDoMes.toString().padStart(2, "0")}/
+          {mes.toString().padStart(2, "0")}
+        </h2>
+        <p>Nenhum hábito concluído ainda</p>
+      </TodayHeaderWrapper>
+    );
+  }
 }
 
 const TodayHeaderWrapper = styled.div`
@@ -68,4 +94,9 @@ const TodayHeaderWrapper = styled.div`
     font-size: 18px;
     color: #bababa;
   }
+`;
+
+const GreenText = styled.div`
+  font-size: 18px;
+  color: #8fc549;
 `;

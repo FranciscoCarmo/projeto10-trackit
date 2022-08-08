@@ -4,6 +4,7 @@ export default function WeekbuttonsAdd({
   index,
   selectedDaysArray,
   setSelectedDaysArray,
+  disableButtons,
 }) {
   const letterArray = ["D", "S", "T", "Q", "Q", "S", "S"];
 
@@ -12,12 +13,14 @@ export default function WeekbuttonsAdd({
       <DayButton
         selected
         onClick={() => {
-          console.log("Clicou");
-          if (selectedDaysArray && selectedDaysArray.includes(index)) {
-            setSelectedDaysArray(selectedDaysArray.filter((x) => x != index));
-          } else {
-            selectedDaysArray.push(index);
-            setSelectedDaysArray([...selectedDaysArray]);
+          if (!disableButtons) {
+            console.log("Clicou");
+            if (selectedDaysArray && selectedDaysArray.includes(index)) {
+              setSelectedDaysArray(selectedDaysArray.filter((x) => x != index));
+            } else {
+              selectedDaysArray.push(index);
+              setSelectedDaysArray([...selectedDaysArray]);
+            }
           }
         }}
       >
@@ -28,12 +31,14 @@ export default function WeekbuttonsAdd({
     return (
       <DayButton
         onClick={() => {
-          console.log("Clicou");
-          if (selectedDaysArray && selectedDaysArray.includes(index)) {
-            setSelectedDaysArray(selectedDaysArray.filter((x) => x != index));
-          } else {
-            selectedDaysArray.push(index);
-            setSelectedDaysArray([...selectedDaysArray]);
+          if (!disableButtons) {
+            console.log("Clicou");
+            if (selectedDaysArray && selectedDaysArray.includes(index)) {
+              setSelectedDaysArray(selectedDaysArray.filter((x) => x != index));
+            } else {
+              selectedDaysArray.push(index);
+              setSelectedDaysArray([...selectedDaysArray]);
+            }
           }
         }}
       >

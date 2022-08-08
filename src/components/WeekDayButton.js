@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-export default function WeekDayButton({
-  index,
-  selectedDaysArray,
-  setSelectedDaysArray,
-}) {
+export default function WeekDayButton({ index, selectedDaysArray }) {
   const letterArray = ["D", "S", "T", "Q", "Q", "S", "S"];
 
   console.log(selectedDaysArray);
