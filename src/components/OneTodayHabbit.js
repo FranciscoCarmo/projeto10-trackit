@@ -9,6 +9,8 @@ export default function OneTodayHabbit({
 }) {
   const { id, name, done, currentSequence, highestSequence } = habito;
 
+  let isRecord = currentSequence == highestSequence;
+
   function checkHabbit() {
     const token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDg3OSwiaWF0IjoxNjU5OTY0Njg4fQ.iVr8POqd35B2p21FIl2-Ezg3xfsnP_mMU8eKufnIbic";
@@ -45,8 +47,20 @@ export default function OneTodayHabbit({
     <OneHabbitWrapper>
       <OneHabbitText>
         <HabbitTitle>{name}</HabbitTitle>
-        <Sequence>Sequência atual: {currentSequence} dias</Sequence>
-        <Record>Recorder atual: {highestSequence} dias</Record>
+        <Sequence>
+          Sequência atual:{" "}
+          <GreenRecord isRecord={isRecord}>
+            {" "}
+            {currentSequence} dias{" "}
+          </GreenRecord>
+        </Sequence>
+        <Record>
+          Seu recorde:{" "}
+          <GreenRecord isRecord={isRecord}>
+            {" "}
+            {highestSequence} dias{" "}
+          </GreenRecord>
+        </Record>
       </OneHabbitText>
       <CheckHabbitButton done={done} onClick={() => checkHabbit()}>
         <img src={check}></img>
@@ -101,4 +115,8 @@ const CheckHabbitButton = styled.div`
   align-items: center;
 
   background-color: ${(props) => (props.done ? "#8FC549" : "#ebebeb")};
+`;
+
+const GreenRecord = styled.span`
+  color: ${(props) => (props.isRecord ? "#8FC549" : "#666666")};
 `;
