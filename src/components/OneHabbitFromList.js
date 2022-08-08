@@ -11,9 +11,11 @@ export default function OneHabbitFromList({
   days,
   reload,
   setReload,
+  habbitList,
 }) {
   const weekDays = [0, 1, 2, 3, 4, 5, 6];
   const { user, setUser } = useContext(UserContext);
+  const { percentage, setPercentage } = useContext(UserContext);
 
   function tryDelete() {
     let confirmed = false;
@@ -33,6 +35,10 @@ export default function OneHabbitFromList({
       const x = reload;
       x.push(1);
       setReload([...x]);
+
+      if (habbitList.length == 0) {
+        setPercentage(0);
+      }
     }
   }
 

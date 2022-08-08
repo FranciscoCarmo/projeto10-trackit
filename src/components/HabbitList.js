@@ -45,6 +45,7 @@ export default function HabbitList({ reload, setReload }) {
               days={habbit.days}
               reload={reload}
               setReload={setReload}
+              habbitList={habbitList}
             />
           );
         })}
