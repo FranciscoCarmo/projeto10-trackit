@@ -3,8 +3,6 @@ import styled from "styled-components";
 export default function WeekDayButton({ index, selectedDaysArray }) {
   const letterArray = ["D", "S", "T", "Q", "Q", "S", "S"];
 
-  console.log(selectedDaysArray);
-
   if (selectedDaysArray && selectedDaysArray.includes(index)) {
     return <DayButton selected>{letterArray[index]}</DayButton>;
   } else {

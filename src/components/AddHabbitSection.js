@@ -54,10 +54,9 @@ export default function AddHabbitSection({
           SetDisableButtons(false);
           setHabbitName("");
           setSelectedDaysArray([]);
+          setIsCreatingHabbit(false);
         })
-        .catch(alert("Falha ao enviar a requisição"));
-
-      setIsCreatingHabbit(false);
+        .catch(() => alert("Falha ao enviar a requisição"));
     } else {
       alert("Preencha corretamente os campos");
     }

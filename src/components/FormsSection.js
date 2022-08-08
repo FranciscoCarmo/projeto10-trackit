@@ -15,6 +15,19 @@ export default function FormsSection() {
 
   const { user, setUser } = useContext(UserContext);
 
+  if (localStorage.getItem("nome")) {
+    setUser({
+      name: localStorage.getItem("nome"),
+      id: localStorage.getItem("id"),
+      image: localStorage.getItem("image"),
+      email: localStorage.getItem("email"),
+      password: localStorage.getItem("password"),
+      token: localStorage.getItem("token"),
+    });
+
+    navigate("/hoje", { replace: true });
+  }
+
   function handleLoginForm(e) {
     e.preventDefault();
 
@@ -36,6 +49,14 @@ export default function FormsSection() {
         console.log("Deu certo");
         console.log(resposta.data);
         setUser({ ...resposta.data });
+
+        //local storage
+        localStorage.setItem("nome", resposta.data.name);
+        localStorage.setItem("id", resposta.data.id);
+        localStorage.setItem("image", resposta.data.image);
+        localStorage.setItem("email", resposta.data.email);
+        localStorage.setItem("password", resposta.data.password);
+        localStorage.setItem("token", resposta.data.token);
 
         navigate("/hoje", { replace: true });
 

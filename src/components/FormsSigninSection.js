@@ -50,10 +50,7 @@ export default function FormsSigninSection() {
         alert("Falha no cadastro");
 
         console.log(requisicao);
-        setEmail("");
-        setPassword("");
-        setNome("");
-        setFoto("");
+
         setIsLoading(false);
       });
   }
