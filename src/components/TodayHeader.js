@@ -19,7 +19,9 @@ export default function TodayHeader({ todayHabbit }) {
   if (todayHabbit && todayHabbit.length > 0) {
     doneArray = todayHabbit.filter((x) => x.done);
     aux = doneArray.length / todayHabbit.length;
-    setPercentage(aux * 100);
+    aux = aux * 100;
+    aux = aux.toFixed(0);
+    setPercentage(aux);
     console.log(percentage);
   }
 

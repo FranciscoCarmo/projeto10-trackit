@@ -2,6 +2,8 @@ import styled from "styled-components";
 import WeekDayButton from "./WeekDayButton";
 import bin from "../assets/bin.png";
 import axios from "axios";
+import UserContext from "../contexts/UserContext";
+import { useContext } from "react";
 
 export default function OneHabbitFromList({
   name,
@@ -11,14 +13,13 @@ export default function OneHabbitFromList({
   setReload,
 }) {
   const weekDays = [0, 1, 2, 3, 4, 5, 6];
+  const { user, setUser } = useContext(UserContext);
 
   function tryDelete() {
     let confirmed = false;
     confirmed = window.confirm("Deseja apagar esse hábito?");
     if (confirmed) {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDg3OSwiaWF0IjoxNjU5OTY0Njg4fQ.iVr8POqd35B2p21FIl2-Ezg3xfsnP_mMU8eKufnIbic";
-
+      const token = user.token;
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };

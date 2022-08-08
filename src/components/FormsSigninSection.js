@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
+import { useContext } from "react";
 
 export default function FormsSigninSection() {
   const [email, setEmail] = useState("");

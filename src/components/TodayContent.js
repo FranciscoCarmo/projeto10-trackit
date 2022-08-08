@@ -3,10 +3,14 @@ import OneTodayHabbit from "./OneTodayHabbit";
 import TodayHeader from "./TodayHeader";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import UserContext from "../contexts/UserContext";
+import { useContext } from "react";
 
 export default function TodayContent() {
   const [todayHabbit, setTodayHabbit] = useState();
   const [reloadToday, setReloadToday] = useState([]);
+
+  const { user, setUser } = useContext(UserContext);
 
   let doneArray = [];
 
@@ -16,9 +20,7 @@ export default function TodayContent() {
   }
 
   function getTodayHabbit() {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDg3OSwiaWF0IjoxNjU5OTY0Njg4fQ.iVr8POqd35B2p21FIl2-Ezg3xfsnP_mMU8eKufnIbic";
-
+    const token = user.token;
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };

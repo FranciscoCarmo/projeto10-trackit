@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import check from "../assets/check.png";
 import axios from "axios";
+import UserContext from "../contexts/UserContext";
+import { useContext } from "react";
 
 export default function OneTodayHabbit({
   habito,
@@ -8,13 +10,12 @@ export default function OneTodayHabbit({
   setReloadToday,
 }) {
   const { id, name, done, currentSequence, highestSequence } = habito;
+  const { user, setUser } = useContext(UserContext);
 
   let isRecord = currentSequence == highestSequence;
 
   function checkHabbit() {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDg3OSwiaWF0IjoxNjU5OTY0Njg4fQ.iVr8POqd35B2p21FIl2-Ezg3xfsnP_mMU8eKufnIbic";
-
+    const token = user.token;
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };

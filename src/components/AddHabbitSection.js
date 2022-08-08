@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
+import UserContext from "../contexts/UserContext";
+import { useContext } from "react";
 
 import WeekButtonsAdd from "./WeekButtonsAdd";
 
@@ -16,6 +19,9 @@ export default function AddHabbitSection({
   const [habbitName, setHabbitName] = useState("");
   const [disableButtons, SetDisableButtons] = useState(false);
 
+  const { user, setUser } = useContext(UserContext);
+  const { percentage, setPercentage } = useContext(UserContext);
+
   function handleSave() {
     if (habbitName.length > 0 && selectedDaysArray.length > 0) {
       const body = {
@@ -25,9 +31,7 @@ export default function AddHabbitSection({
 
       SetDisableButtons(true);
 
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDg3OSwiaWF0IjoxNjU5OTY0Njg4fQ.iVr8POqd35B2p21FIl2-Ezg3xfsnP_mMU8eKufnIbic";
-
+      const token = user.token;
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
@@ -40,6 +44,9 @@ export default function AddHabbitSection({
 
       promisse
         .then(() => {
+          //Calcula percentage
+          //Falta isso
+
           const x = reload;
           x.push(1);
           setReload([...x]);
@@ -89,8 +96,8 @@ export default function AddHabbitSection({
             >
               Cancelar
             </Cancel>
-            <Save disabled onClick={handleSave}>
-              Salvar
+            <Save disabled onClick={handleSave} fosco="true">
+              <ThreeDots color="#FFF" height={50} width={50} />
             </Save>
           </BottomButtons>
         </AddHabbitWrapper>
@@ -196,6 +203,7 @@ const Save = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: ${(props) => (props.fosco ? 0.3 : 1)};
 
   background-color: #52b6ff;
   color: white;
